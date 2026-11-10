@@ -1,0 +1,221 @@
+
+Se vuoi proseguire, il passo successivo molto utile sarebbe map(), filter() e lambda, perché lì vedresti finalmente il collegamento che avevi intuito all'inizio tra list comprehension e lambda expression.
+
+#-----------------------------------------------------------------------
+Ora: lambda, map() e filter()
+Qui viene il bello, perché ritroviamo proprio quella somiglianza che avevi notato all'inizio.
+
+1. lambda: una funzione piccolissima
+Abbiamo visto:
+
+def doppio(x):
+    return x * 2
+
+Possiamo scrivere la stessa funzione con una lambda:
+
+doppio = lambda x: x * 2
+
+La struttura è:
+
+lambda argomento: espressione
+
+Quindi:
+
+lambda x: x * 2
+
+significa:
+
+"Prendi x e restituisci x * 2."
+
+Puoi usarla:
+
+print(doppio(5))
+
+→
+
+10
+
+Una cosa importante
+Una lambda non è necessariamente legata a map().
+
+È semplicemente una funzione anonima, spesso utilizzata quando serve una funzione molto semplice e temporanea.
+
+2. map()
+Ed ecco il collegamento con la list comprehension.
+
+Avevamo:
+
+numeri = [1, 2, 3, 4, 5]
+
+risultato = [x * 2 for x in numeri]
+
+Possiamo scrivere:
+
+risultato = list(map(lambda x: x * 2, numeri))
+
+Leggiamola:
+
+map(
+    lambda x: x * 2,
+    numeri
+)
+
+Significa:
+
+"Applica questa funzione a ogni elemento di numeri."
+
+Quindi:
+
+1 → 2
+2 → 4
+3 → 6
+4 → 8
+5 → 10
+
+Risultato:
+
+[2, 4, 6, 8, 10]
+
+Confronto
+List comprehension:
+
+[x * 2 for x in numeri]
+
+map():
+
+list(map(lambda x: x * 2, numeri))
+
+Per questo avevi percepito una parentela: fanno effettivamente una cosa molto simile.
+
+3. filter()
+Ora prendiamo:
+
+numeri = [1, 2, 3, 4, 5, 6]
+
+Con comprehension:
+
+pari = [x for x in numeri if x % 2 == 0]
+
+Con filter():
+
+pari = list(filter(lambda x: x % 2 == 0, numeri))
+
+La lambda:
+
+lambda x: x % 2 == 0
+
+deve restituire True oppure False.
+
+Quindi:
+
+1 → False → scarta
+2 → True  → tieni
+3 → False → scarta
+4 → True  → tieni
+5 → False → scarta
+6 → True  → tieni
+
+Risultato:
+
+[2, 4, 6]
+
+4. Qui possiamo fare un collegamento molto bello
+Guarda:
+
+List comprehension
+[x * 2 for x in numeri]
+
+map()
+list(map(lambda x: x * 2, numeri))
+
+Sono praticamente due modi diversi di esprimere:
+
+trasforma ogni elemento.
+
+E:
+
+List comprehension
+[x for x in numeri if x % 2 == 0]
+
+filter()
+list(filter(lambda x: x % 2 == 0, numeri))
+
+Esprimono:
+
+seleziona alcuni elementi.
+
+5. E possiamo combinarli
+Per esempio:
+
+Prendi i numeri pari e moltiplicali per 10.
+
+Con comprehension:
+
+risultato = [x * 10 for x in numeri if x % 2 == 0]
+
+Con filter() + map():
+
+risultato = list(
+    map(
+        lambda x: x * 10,
+        filter(lambda x: x % 2 == 0, numeri)
+    )
+)
+
+😂 E qui abbiamo un esempio perfetto di una cosa che tecnicamente funziona, ma probabilmente preferirei la comprehension.
+
+La prima versione:
+
+[x * 10 for x in numeri if x % 2 == 0]
+
+è immediatamente leggibile.
+
+La seconda:
+
+list(map(lambda x: x * 10,
+         filter(lambda x: x % 2 == 0, numeri)))
+
+richiede un po' più di lavoro mentale.
+
+6. Quindi quando uso cosa?
+Una buona regola pratica:
+
+lambda
+Quando ti serve una funzione semplice e breve, spesso come argomento di un'altra funzione.
+
+lambda x: x * 2
+
+map()
+Quando vuoi trasformare ogni elemento:
+
+map(funzione, sequenza)
+
+filter()
+Quando vuoi selezionare alcuni elementi:
+
+filter(funzione_che_restituisce_true_false, sequenza)
+
+List comprehension
+Quando vuoi fare una trasformazione o un filtro e la forma:
+
+[espressione for x in sequenza if condizione]
+
+rimane semplice e leggibile.
+
+🧪 Primo esercizio
+Partiamo facile, come abbiamo fatto prima.
+
+Cosa produce:
+
+numeri = [2, 4, 6, 8]
+
+risultato = list(map(lambda x: x + 5, numeri))
+
+Prova a seguire:
+
+2 → ?
+4 → ?
+6 → ?
+8 → ?
+
+👉 Qual è risultato?
