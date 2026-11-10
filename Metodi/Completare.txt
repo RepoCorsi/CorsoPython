@@ -1,0 +1,153 @@
+Quale può essere lo scopo di assegnare una funzione a una variabile come in questo esempio? def saluta():
+    print("Ciao!")
+
+mia_funzione = saluta
+
+Risposta:
+Assegnare una funzione a una variabile, come in questo esempio:
+
+python
+```
+def saluta():
+    print("Ciao!")
+
+mia_funzione = saluta
+```
+
+significa assegnare alla variabile un riferimento alla funzione stessa, senza eseguirla.
+
+In Python, le funzioni sono oggetti e possono essere trattate come qualsiasi altro valore: puoi assegnarle a variabili, passarle ad altre funzioni e restituirle da una funzione.
+
+## 1. Che cosa succede concretamente?
+
+Vediamo la differenza tra i due casi.
+
+Caso A — Assegno la funzione
+
+python
+```
+mia_funzione = saluta
+```
+
+Ora `mia_funzione` fa riferimento alla stessa funzione di `saluta`. Non viene stampato nulla.
+
+Puoi chiamarla attraverso la nuova variabile:
+
+python
+```
+mia_funzione()
+```
+
+Risultato:
+
+text
+```
+Ciao!
+```
+
+Caso B — Assegno il risultato della funzione
+
+python
+```
+mia_funzione = saluta()
+```
+
+In questo caso, invece, Python esegue immediatamente `saluta()`, che stampa `Ciao!`.
+
+Dato che la funzione non restituisce esplicitamente alcun valore, restituisce `None`. Quindi `mia_funzione` conterrà `None`, non la funzione.
+
+La differenza fondamentale è:
+
+| Istruzione | Che cosa assegna |
+| --- | --- |
+| `mia_funzione = saluta` | La funzione |
+| `mia_funzione = saluta()` | Il risultato della chiamata (`None`, in questo esempio) |
+
+## 2. Ma a che cosa serve davvero?
+
+Il vantaggio emerge quando vuoi decidere quale funzione eseguire, oppure quando eseguirla, senza dover conoscere in anticipo tutti i dettagli.
+
+### Esempio 1: scegliere una funzione
+
+python
+```
+def saluta():
+    print("Ciao!")
+
+def arrivederci():
+    print("Arrivederci!")
+
+azione = saluta
+azione()
+```
+
+Risultato:
+
+text
+```
+Ciao!
+```
+
+Se in seguito cambiassi l'assegnazione:
+
+python
+```
+azione = arrivederci
+azione()
+```
+
+otterresti:
+
+text
+```
+Arrivederci!
+```
+
+La variabile `azione` diventa quindi una sorta di selettore della funzione da eseguire.
+
+### Esempio 2: passare una funzione a un'altra funzione
+
+Questo è uno degli utilizzi più importanti.
+
+python
+```
+def saluta():
+    print("Ciao!")
+
+def esegui_azione(azione):
+    azione()
+
+esegui_azione(saluta)
+```
+
+Risultato:
+
+text
+```
+Ciao!
+```
+
+Che cosa è successo?
+
+1. Abbiamo definito `saluta`.
+2. Abbiamo passato `saluta` come argomento a `esegui_azione`, senza parentesi.
+3. All'interno di `esegui_azione`, il parametro `azione` fa riferimento alla funzione ricevuta.
+4. L'istruzione `azione()` la esegue.
+
+In questo modo puoi scrivere una funzione generica che esegue altre funzioni, senza dover sapere quale funzione riceverà.
+
+Questo meccanismo è utilizzato, per esempio, nei callback, nei gestori degli eventi e nei decoratori di Python.
+
+## 3. Un'analogia semplice
+
+Immagina che la funzione sia un telecomando:
+
+- `saluta` è il telecomando che permette di eseguire una determinata azione.
+- `mia_funzione = saluta` significa assegnare quel telecomando a una nuova variabile.
+- `mia_funzione()` significa premere il pulsante ed eseguire l'azione.
+
+Assegnare il telecomando non significa premere il pulsante: allo stesso modo, assegnare una funzione non significa eseguirla.
+
+In sintesi: `mia_funzione = saluta` è utile perché ti permette di trattare una funzione come un valore, conservarne il riferimento, scegliere dinamicamente quale funzione usare e passarla ad altre funzioni.
+
+Se stai imparando Python, il concetto più importante da ricordare è questo: le parentesi `()` servono a chiamare la funzione; senza parentesi, stai facendo riferimento alla funzione stessa.

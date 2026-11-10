@@ -1,0 +1,13 @@
+Nome;Cognome;Titolo;Stipendio;Sede;Codice;Data_Assunzione
+Tom;Simons;Venditore;75000000;New York;1;01/01/1997
+Caterina;Quaglieri;Capo Filiale;125000000;Roma;2;02/01/1997
+Maurice;Delon;Responsabile;72000000;Parigi;3;26/02/1998
+Terry;Evans;Venditore;52000000;Londra;4;03/06/1998
+Giovanni;Giolitti;Venditore;39000000;Milano;5;05/01/1996
+Nancy;Martinez;Capo Filiale;75000000;Madrid;6;06/01/1998
+Teresa;Assoni;Venditore;40000000;Torino;7;01/01/1997
+Michele;Elisi;Responsabile;52000000;Roma;8;30/08/1996
+Gregorio;Levanti;Venditore;55000000;Roma;9;01/04/1999
+Elena;Missoni;Venditore;87000000;Milano;10;31/07/1996
+Todd;Hanson;Venditore;88000000;New York;11;10/01/1997
+Michael;Wright;Venditore;60000000;New York;12;22/11/1995

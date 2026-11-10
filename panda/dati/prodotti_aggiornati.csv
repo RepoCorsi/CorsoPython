@@ -1,0 +1,6 @@
+Prodotto;Prezzo;Disponibile;Quantita;Prezzo_IVA
+Mela;1.2;True;100;1.464,00
+Banana;0.8;True;150;0.976
+Arancia;1.5;False;0;1.83
+Fragola;3.0;True;50;3.66
+Kiwi;2.1;False;0;2.562,00
